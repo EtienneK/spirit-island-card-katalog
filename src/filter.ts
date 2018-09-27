@@ -1,6 +1,8 @@
-/// <reference path="types.ts" />
+import { Types } from './types';
 
-namespace Filter {
+export namespace Filter {
+    import Card = Types.Card;
+    import LandAny = Types.LandAny;
     import PowerCard = Types.PowerCard;
     import FearCard = Types.FearCard;
     import ChoiceEventCard = Types.ChoiceEventCard;

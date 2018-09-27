@@ -1,8 +1,8 @@
 // This file contains material owned by Greater Than Games, LLC.
 
-/// <reference path="types.ts" />
+import { Types } from './types';
 
-namespace DB {
+export namespace DB {
     import ChoiceEventCard = Types.ChoiceEventCard;
     import ChoiceDesc = Types.ChoiceDesc;
     import ChoiceCost = Types.ChoiceCost;

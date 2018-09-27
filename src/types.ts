@@ -1,4 +1,6 @@
-namespace Types {
+import { DB } from './db';
+
+export namespace Types {
     import TokenEvent = DB.TokenEvent;
     import DahanEvent = DB.DahanEvent;
 
@@ -214,7 +216,7 @@ namespace Types {
             front.appendChild(picture);
 
             if (this.getFrontOverlay() != null) {
-                front.appendChild(<Node> this.getFrontOverlay());
+                front.appendChild(<Node>this.getFrontOverlay());
             }
 
             let back = document.createElement("div");
@@ -274,7 +276,7 @@ namespace Types {
 
         // scale font of cardbacks to fit size
         private scaleFontSize() {
-            let p = <HTMLSpanElement> this.P;
+            let p = <HTMLSpanElement>this.P;
             this.FontSize = 16;
             p.style.fontSize = this.FontSize + "px";
             let back = (p.parentElement as any).parentElement as any;
@@ -294,8 +296,8 @@ namespace Types {
 
     export class PowerCard extends Card {
         constructor(set: ProductSet, type: PowerType, name: string, public cost: number, public speed: Speed,
-                    public range: Ranges | null, public target: Target, public elements: Elements[],
-                    public artist: string, public description: string) {
+            public range: Ranges | null, public target: Target, public elements: Elements[],
+            public artist: string, public description: string) {
             super(set, type, name);
         }
 
@@ -317,7 +319,7 @@ namespace Types {
         }
 
         getFrontOverlay(): Node | null {
-            let overlay = <HTMLDivElement> document.createElement("div");
+            let overlay = <HTMLDivElement>document.createElement("div");
             overlay.style.position = "absolute";
             overlay.style.backgroundColor = toColor(<PowerType>this.type);
             overlay.style.width = "67%";
@@ -396,7 +398,7 @@ namespace Types {
 
     export abstract class EventCard extends Card {
         constructor(set: ProductSet, type: EventType | EventType[], name: string | string[],
-                    public tokenevent: TokenEvent | null, public dahanevent: DahanEvent | null) {
+            public tokenevent: TokenEvent | null, public dahanevent: DahanEvent | null) {
             super(set, type, name);
         }
 
@@ -411,7 +413,7 @@ namespace Types {
     }
 
     export class ChoiceCost {
-        constructor(public energy: number, public per: string | null, public aidedBy: Elements | null) {}
+        constructor(public energy: number, public per: string | null, public aidedBy: Elements | null) { }
 
         toString(): string {
             let text = "";
@@ -429,7 +431,7 @@ namespace Types {
     }
 
     export class ChoiceDesc {
-        constructor(public name: string, public cost: ChoiceCost | null, public actions: string[]) {}
+        constructor(public name: string, public cost: ChoiceCost | null, public actions: string[]) { }
 
         toString(): string {
             let text = "";
@@ -446,7 +448,7 @@ namespace Types {
 
     export class ChoiceEventCard extends EventCard {
         constructor(set: ProductSet, name: string, public description: string, public choices: ChoiceDesc[],
-                    tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
+            tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
             super(set, EventType.ChoiceEvent, name, tokenevent, dahanevent);
         }
 
@@ -472,7 +474,7 @@ namespace Types {
     }
 
     export class EventDesc {
-        constructor(public name: string, public description: string) {}
+        constructor(public name: string, public description: string) { }
 
         toString(): string {
             return this.name + ": " + this.description;
@@ -481,7 +483,7 @@ namespace Types {
 
     export class StageEventCard extends EventCard {
         constructor(set: ProductSet, public level1: EventDesc, public level2: EventDesc, public level3: EventDesc,
-                    tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
+            tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
             super(set, EventType.StageEvent, [...new Set([level1.name, level2.name, level3.name])], tokenevent, dahanevent);
         }
 
@@ -509,7 +511,7 @@ namespace Types {
 
     export class TerrorLevelEventCard extends EventCard {
         constructor(set: ProductSet, public level1: EventDesc, public level2: EventDesc, public level3: EventDesc,
-                    tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
+            tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
             super(set, EventType.TerrorLevelEvent, [...new Set([level1.name, level2.name, level3.name])], tokenevent, dahanevent);
         }
 
@@ -537,7 +539,7 @@ namespace Types {
 
     export class HealthyBlightedLandEventCard extends EventCard {
         constructor(set: ProductSet, public healthy: EventDesc, public blighted: EventDesc,
-                    tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
+            tokenevent: TokenEvent | null, dahanevent: DahanEvent | null) {
             super(set, EventType.HealthyBlightedLandEvent, [healthy.name, blighted.name], tokenevent, dahanevent);
         }
 
